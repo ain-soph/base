@@ -1,4 +1,4 @@
-name: docker
+name: dump
 
 on:
   push:
