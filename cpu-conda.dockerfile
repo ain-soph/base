@@ -23,7 +23,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     /opt/conda/bin/conda install -qy python=3.9 && \
     /opt/conda/bin/conda update --all --quiet -y && \
     /opt/conda/bin/conda install -qy pytorch torchvision torchaudio cpuonly -c pytorch -c=conda-forge && \
-    /opt/conda/bin/conda clean -tipsy && \
+    /opt/conda/bin/conda clean -tipsy
 RUN /opt/conda/bin/pip install --no-cache-dir --upgrade pip && \
     /opt/conda/bin/pip install --no-cache-dir sphinx sphinxcontrib.katex numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn setuptools wheel pep517 twine
 ENV TINI_VERSION v0.16.1
