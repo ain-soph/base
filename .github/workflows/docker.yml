@@ -20,18 +20,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: debug
-        run: |
-          echo "${{ github.repository.name }}"
-          echo "${{ github.repository }}"
-          echo "${{ github }}"
-        shell: bash
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           file: ./${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
 
   cpu-conda:
     runs-on: ubuntu-latest
@@ -50,7 +44,7 @@ jobs:
         with:
           file: ./${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
 
   # gpu:
   #   runs-on: ubuntu-latest
@@ -69,7 +63,7 @@ jobs:
   #       with:
   #         file: ./${{ github.job }}.dockerfile
   #         push: true
-  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository.name }}:${{ github.job }}
+  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
 
   gpu-conda:
     runs-on: ubuntu-latest
@@ -88,4 +82,4 @@ jobs:
         with:
           file: ./${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
