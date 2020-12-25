@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y wget bzip2 ca-certificates c
     ln -sf /usr/share/zoneinfo/EST /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir sphinx sphinxcontrib.katex numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn setuptools wheel pep517 twine
+    pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn
 RUN pip install --no-cache-dir torch==1.7.1+cpu torchvision==0.8.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/

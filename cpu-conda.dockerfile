@@ -25,7 +25,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     /opt/conda/bin/conda install -qy pytorch torchvision torchaudio cpuonly -c pytorch -c=conda-forge && \
     /opt/conda/bin/conda clean -tipsy
 RUN /opt/conda/bin/pip install --no-cache-dir --upgrade pip && \
-    /opt/conda/bin/pip install --no-cache-dir sphinx sphinxcontrib.katex numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn setuptools wheel pep517 twine
+    /opt/conda/bin/pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn
 ENV TINI_VERSION v0.16.1
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
