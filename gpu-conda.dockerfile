@@ -9,7 +9,7 @@ RUN apt update --fix-missing && \
     apt upgrade -y
 RUN DEBIAN_FRONTEND="noninteractive" apt install -y wget bzip2 ca-certificates curl git vim tmux make tzdata && \
     apt clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
     # Set timezone
     ln -sf /usr/share/zoneinfo/EST /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
