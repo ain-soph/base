@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu20.04
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
