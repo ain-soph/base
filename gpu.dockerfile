@@ -19,7 +19,7 @@ RUN cd /usr/bin && \
     ln -s pdb3.9 pdb && \
     ln -s pydoc3.9 pydoc && \
     ln -s pygettext3.9 pygettext && \
-    ln -s python3.9 python && \
+    ln -s python3.9 python
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn tensorboard
