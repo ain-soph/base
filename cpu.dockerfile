@@ -2,7 +2,6 @@ FROM python:latest
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH /opt/conda/bin:$PATH
 
 RUN apt update --fix-missing && \
     DEBIAN_FRONTEND="noninteractive" apt install -y apt-utils && \

@@ -20,7 +20,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc && \
-    /opt/conda/bin/conda install -qy python=3.9 && \
+    /opt/conda/bin/conda install -qy python=3.9.2 -c conda-forge && \
     /opt/conda/bin/conda update --all --quiet -y && \
     /opt/conda/bin/conda clean -tipsy
 RUN /opt/conda/bin/pip install --no-cache-dir --upgrade pip && \
