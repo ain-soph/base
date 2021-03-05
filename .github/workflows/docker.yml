@@ -6,7 +6,8 @@ on:
       - master
   schedule:
     - cron: "00 0 * * 0-6"
-
+env:
+  DOCKERHUB_REPOSITORY: base
 jobs:
   cpu:
     runs-on: ubuntu-latest
@@ -27,28 +28,29 @@ jobs:
         with:
           file: ${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:${{ github.job }}
 
-  # gpu:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
-  #     - name: Login to DockerHub
-  #       uses: docker/login-action@v1
-  #       with:
-  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-  #     - name: Build and push
-  #       uses: docker/build-push-action@v2
-  #       with:
-  #         file: ./${{ github.job }}.dockerfile
-  #         push: true
-  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
+  gpu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          file: ./${{ github.job }}.dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:${{ github.job }}
+
   basic-conda:
     runs-on: ubuntu-latest
     steps:
@@ -68,7 +70,7 @@ jobs:
         with:
           file: ${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:${{ github.job }}
 
   cpu-conda:
     needs: basic-conda
@@ -90,7 +92,7 @@ jobs:
         with:
           file: ${{ github.job }}.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:${{ github.job }}
 
   gpu-conda:
     needs: basic-conda
@@ -113,5 +115,5 @@ jobs:
           file: ${{ github.job }}.dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.job }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:${{ github.job }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKERHUB_REPOSITORY }}:latest

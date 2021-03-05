@@ -13,9 +13,12 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y wget bzip2 ca-certificates c
     # Set timezone
     ln -sf /usr/share/zoneinfo/EST /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
-RUN DEBIAN_FRONTEND="noninteractive" apt install -y python3.9 python3-pip
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y python3.9 python3.9-distutils && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3.9 get-pip.py && \
+    rm get-pip.py
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn tensorboard
-RUN pip install --no-cache-dir torch==1.7.1+cpu torchvision==0.8.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install --no-cache-dir torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
