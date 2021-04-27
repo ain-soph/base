@@ -3,9 +3,9 @@ name: docker
 on:
   schedule:
     - cron: "00 0 * * 0-6"
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
 
 env:
   DOCKERHUB_REPOSITORY: base
