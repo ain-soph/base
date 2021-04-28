@@ -18,7 +18,7 @@ jobs:
   #       shell: bash
   #       env:
   #         GITHUB_CONTEXT: ${{ toJson(github) }}
-  cpu:
+  basic-conda:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +33,7 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: docker.pkg.github.com
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
@@ -43,8 +43,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-            ghcr.io/${{ github.repository }}:${{ github.job }}
-
+            docker.pkg.github.com/${{ github.repository }}:${{ github.job }}
   # gpu:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -65,7 +64,6 @@ jobs:
   #         file: ./${{ github.job }}.dockerfile
   #         push: true
   #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-
   # basic-conda:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -86,7 +84,6 @@ jobs:
   #         file: ${{ github.job }}.dockerfile
   #         push: true
   #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-
   # cpu-conda:
   #   needs: basic-conda
   #   runs-on: ubuntu-latest
@@ -108,7 +105,6 @@ jobs:
   #         file: ${{ github.job }}.dockerfile
   #         push: true
   #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-
   # gpu-conda:
   #   needs: basic-conda
   #   runs-on: ubuntu-latest
