@@ -43,7 +43,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-            ghcr.io/$GITHUB_REPOSITORY:${{ github.job }}
+            ghcr.io/${{ github.repository }}:${{ github.job }}
 
   # gpu:
   #   runs-on: ubuntu-latest
