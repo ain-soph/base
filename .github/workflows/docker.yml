@@ -231,6 +231,6 @@ jobs:
                 }
             }
         env:
-          OWNER: ${{ github.repository_owner }}
+          OWNER: users/${{ github.repository_owner }}
           PACKAGE_NAME: ${{ env.DOCKERHUB_REPOSITORY }}
           PER_PAGE: 100
