@@ -97,6 +97,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
   cpu-conda:
+    needs: basic-conda
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -123,6 +124,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
   gpu-conda:
+    needs: basic-conda
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
