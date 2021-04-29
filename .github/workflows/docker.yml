@@ -214,7 +214,7 @@ jobs:
     # needs: [basic-conda, cpu, gpu, cpu-conda, gpu-conda]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v4.0.2
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
