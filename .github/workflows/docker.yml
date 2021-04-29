@@ -33,7 +33,7 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
@@ -43,7 +43,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
-            docker.pkg.github.com/${{ github.repository }}:${{ github.job }}
+            ghcr.io/${{ github.repository }}:${{ github.job }}
   # gpu:
   #   runs-on: ubuntu-latest
   #   steps:
