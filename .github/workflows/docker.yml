@@ -218,7 +218,7 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
             const response = await github.request("GET /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions",
               { per_page: ${{ env.PER_PAGE }}
