@@ -10,14 +10,14 @@ on:
 env:
   DOCKERHUB_REPOSITORY: base
 jobs:
-  # dump:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Dump github context
-  #       run: echo "$GITHUB_CONTEXT"
-  #       shell: bash
-  #       env:
-  #         GITHUB_CONTEXT: ${{ toJson(github) }}
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump github context
+        run: echo "$GITHUB_CONTEXT"
+        shell: bash
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
   basic-conda:
     runs-on: ubuntu-latest
     steps:
@@ -212,3 +212,25 @@ jobs:
             ghcr.io/${{ github.repository }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
+  cleanup:
+    needs: [basic-conda, cpu, gpu, cpu-conda, gpu-conda]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const response = await github.request("GET /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions",
+              { per_page: ${{ env.PER_PAGE }}
+            });
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0) {
+                    console.log("delete " + version.id)
+                    const deleteResponse = await github.request("DELETE /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
+                    console.log("status " + deleteResponse.status)
+                }
+            }
+        env:
+          OWNER: ${{ github.actor }}
+          PACKAGE_NAME: ${{ env.DOCKERHUB_REPOSITORY }}
+          PER_PAGE: 100
