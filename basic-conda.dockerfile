@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
+LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
