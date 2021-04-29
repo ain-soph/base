@@ -209,6 +209,6 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
             ghcr.io/${{ github.repository }}:${{ github.job }}
-            ghcr.io/${{ github.repository }}:ubuntu-latest
+            ghcr.io/${{ github.repository }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
