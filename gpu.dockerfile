@@ -1,5 +1,6 @@
 FROM nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu20.04
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
+LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
