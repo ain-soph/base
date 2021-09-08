@@ -47,8 +47,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
-          # cache-from: type=gha
-          # cache-to: type=gha
+          cache-from: type=gha
+          cache-to: type=gha
   cpu:
     runs-on: ubuntu-latest
     steps:
@@ -78,8 +78,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
-          # cache-from: type=gha
-          # cache-to: type=gha
+          cache-from: type=gha
+          cache-to: type=gha
   gpu:
     runs-on: ubuntu-latest
     steps:
@@ -109,8 +109,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
-          # cache-from: type=gha
-          # cache-to: type=gha
+          cache-from: type=gha
+          cache-to: type=gha
   cpu-conda:
     needs: basic-conda
     runs-on: ubuntu-latest
@@ -141,8 +141,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:${{ github.job }}
-          # cache-from: type=gha
-          # cache-to: type=gha
+          cache-from: type=gha
+          cache-to: type=gha
   gpu-conda:
     needs: basic-conda
     runs-on: ubuntu-latest
@@ -175,8 +175,8 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
             ghcr.io/${{ github.repository }}:${{ github.job }}
             ghcr.io/${{ github.repository }}:latest
-          # cache-from: type=gha
-          # cache-to: type=gha
+          cache-from: type=gha
+          cache-to: type=gha
   cleanup:
     needs: [basic-conda, cpu, gpu, cpu-conda, gpu-conda]
     runs-on: ubuntu-latest
