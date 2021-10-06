@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.9
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
 LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
