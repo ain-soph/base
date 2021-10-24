@@ -5,7 +5,7 @@ on:
     - cron: "00 0 * * 0"
   push:
     branches:
-      - master
+      - main
 
 env:
   DOCKERHUB_REPOSITORY: base
