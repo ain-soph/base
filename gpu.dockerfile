@@ -24,6 +24,6 @@ RUN cd /usr/bin && \
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn tensorboard
-RUN pip install --no-cache-dir torch==1.10.0+cu113 torchvision==0.11.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install --no-cache-dir torch==1.10.0+cu113 torchvision==0.11.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
