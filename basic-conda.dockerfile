@@ -17,14 +17,17 @@ RUN DEBIAN_FRONTEND="noninteractive" apt install -y wget bzip2 ca-certificates c
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
-    /opt/conda/bin/conda clean -tipsy && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc && \
-    /opt/conda/bin/conda install -qy python=3.9 -c conda-forge && \
+    echo "conda activate py39" >> ~/.bashrc && \
+    /opt/conda/bin/conda update conda --quiet -y && \
+    /opt/conda/bin/conda update --all --quiet -y && \
+    /opt/conda/bin/conda create -qy -n py39 python=3.9 && \
+    /opt/conda/bin/conda activate py39 && \
+    /opt/conda/bin/conda clean -tipsy && \
     /opt/conda/bin/conda update --all --quiet -y && \
     /opt/conda/bin/conda clean -tipsy
-RUN /opt/conda/bin/pip install --no-cache-dir --upgrade pip && \
-    /opt/conda/bin/pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib scikit-learn
+RUN /opt/conda/envs/py39/pip install --no-cache-dir --upgrade pip && \
+    /opt/conda/envs/py39/pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib scikit-learn
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
