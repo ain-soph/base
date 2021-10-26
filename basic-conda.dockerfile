@@ -25,6 +25,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     /opt/conda/bin/conda update --all --quiet -y && \
     /opt/conda/bin/conda clean -tipsy
 RUN /opt/conda/bin/pip install --no-cache-dir --upgrade pip && \
-    /opt/conda/bin/pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib seaborn scikit-learn
+    /opt/conda/bin/pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib scikit-learn
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
