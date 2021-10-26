@@ -4,10 +4,11 @@ LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN apt update --fix-missing && \
-    DEBIAN_FRONTEND="noninteractive" apt install -y apt-utils && \
-    apt upgrade -y
-RUN DEBIAN_FRONTEND="noninteractive" apt install -y wget bzip2 ca-certificates curl git vim tmux make tzdata python3.9 python3-distutils && \
+RUN apt update --fix-missing --no-install-recommends && \
+    DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends apt-utils && \
+    apt upgrade -y --no-install-recommends && \
+    apt clean
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends wget bzip2 ca-certificates curl git vim tmux make tzdata && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     # Set timezone
@@ -23,7 +24,7 @@ RUN cd /usr/bin && \
     ln -s python3.9 python
 
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir numpy pyyaml pandas tqdm matplotlib scikit-learn tensorboard
-RUN pip install --no-cache-dir torch==1.10.0+cu113 torchvision==0.11.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+    pip install --no-cache-dir --upgrade numpy pyyaml pandas tqdm matplotlib scikit-learn tensorboard
+RUN pip install --no-cache-dir --upgrade torch==1.10.0+cu113 torchvision==0.11.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
