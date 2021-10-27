@@ -1,5 +1,7 @@
 FROM local0state/base:basic-conda
 
-RUN /opt/conda/bin/conda install -qy --all pytorch torchvision cudatoolkit=11.3 -c pytorch && \
-    /opt/conda/bin/conda clean -tipsy && \
-    /opt/conda/bin/pip install --no-cache-dir --upgrade tensorboard
+RUN pip install --no-cache-dir --upgrade tensorboard
+RUN conda install -qy --all cudatoolkit=11.3 && \
+    conda clean -tipsy
+RUN conda install -qy --all pytorch torchvision -c pytorch && \
+    conda clean -tipsy
