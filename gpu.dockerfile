@@ -9,7 +9,7 @@ RUN apt update --fix-missing --no-install-recommends && \
     DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends apt-utils && \
     apt upgrade -y --no-install-recommends && \
     # Install packages
-    DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends python3.9 wget bzip2 ca-certificates curl git vim tmux make && \
+    DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends python3.9 python3-distutils wget bzip2 ca-certificates curl git vim tmux make && \
     # Set timezone
     DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends tzdata && \
     ln -sf /usr/share/zoneinfo/EST /etc/localtime && \
