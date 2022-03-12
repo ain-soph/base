@@ -5,7 +5,8 @@ LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Use apt
-RUN apt update --fix-missing --no-install-recommends && \
+RUN add-apt-repository ppa:deadsnakes/ppa && \
+    apt update --fix-missing --no-install-recommends && \
     DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends apt-utils && \
     apt upgrade -y --no-install-recommends && \
     # Install packages
