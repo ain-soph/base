@@ -18,7 +18,8 @@ RUN apt update --fix-missing --no-install-recommends && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 # Update conda packages
-RUN conda update -qy --all && \
+RUN conda install -qy python=3.10.2 -c conda-forge && \
+    conda update -qy --all -c conda-forge && \
     conda clean -tipsy
 # Install pip packages
 RUN pip install --no-cache-dir --upgrade pip && \

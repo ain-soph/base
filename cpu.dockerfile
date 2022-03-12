@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
 LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
@@ -21,7 +21,7 @@ RUN apt update --fix-missing --no-install-recommends && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --upgrade numpy pyyaml pandas tqdm matplotlib scikit-learn tensorboard
 # Install pytorch
-RUN pip install --no-cache-dir --upgrade torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+RUN pip install --no-cache-dir --upgrade torch==1.11.0+cpu torchvision==0.12.0+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
 
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
