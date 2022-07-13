@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
+FROM nvidia/cuda:11.6.1-cudnn8-runtime-ubuntu20.04
 LABEL maintainer="Ren Pang <rbp5354@psu.edu>"
 LABEL org.opencontainers.image.source=https://github.com/ain-soph/base
 
@@ -34,7 +34,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --upgrade numpy pyyaml pandas tqdm matplotlib scikit-learn tensorboard
 # Install pytorch
-RUN pip install --no-cache-dir --upgrade torch==1.11.0+cu113 torchvision==0.12.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN pip install --no-cache-dir --upgrade torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
