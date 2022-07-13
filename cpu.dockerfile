@@ -21,7 +21,7 @@ RUN apt update --fix-missing --no-install-recommends && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --upgrade numpy pyyaml pandas tqdm matplotlib scikit-learn tensorboard
 # Install pytorch
-RUN pip install --no-cache-dir --upgrade torch==1.11.0+cpu torchvision==0.12.0+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+RUN pip install --no-cache-dir --upgrade torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu
 
 CMD [ "/bin/bash" ]
 WORKDIR /workspace/
