@@ -1,0 +1,30 @@
+name: docker
+
+on:
+  schedule:
+    - cron: "00 12 1 * *"
+  push:
+    branches:
+      - main
+
+env:
+  DOCKERHUB_REPOSITORY: base
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          script: |
+            const response = await github.request("GET /user/packages/container/${{ env.DOCKERHUB_REPOSITORY }}/versions",
+              { per_page: 100 });
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0) {
+                    console.log("delete " + version.id)
+                    const deleteResponse = await github.request("DELETE /user/packages/container/${{ env.DOCKERHUB_REPOSITORY }}/versions/" + version.id, { });
+                    console.log("status " + deleteResponse.status)
+                }
+            }
+        env:
+          PER_PAGE: 100
