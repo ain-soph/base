@@ -165,5 +165,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:${{ github.job }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
+          # ghcr.io/${{ github.repository }}:${{ github.job }}
+          # ghcr.io/${{ github.repository }}:latest
           cache-from: type=gha
           cache-to: type=gha
