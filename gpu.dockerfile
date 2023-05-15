@@ -11,7 +11,7 @@ RUN apt update --fix-missing --no-install-recommends && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt upgrade -y --no-install-recommends && \
     # Install packages
-    DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends python3.10 python3.10-distutils wget bzip2 ca-certificates curl git vim tmux make && \
+    DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends python3.11 python3.11-distutils wget bzip2 ca-certificates curl git vim tmux make && \
     # Set timezone
     DEBIAN_FRONTEND="noninteractive" apt install -y --no-install-recommends tzdata && \
     ln -sf /usr/share/zoneinfo/EST /etc/localtime && \
@@ -25,10 +25,10 @@ RUN wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py && \
     python3.10 get-pip.py --no-cache-dir && \
     rm -f get-pip.py && \
     cd /usr/bin && \
-    ln -s pdb3.10 pdb && \
-    ln -s pydoc3.10 pydoc && \
-    ln -s pygettext3.10 pygettext && \
-    ln -s python3.10 python
+    ln -s pdb3.11 pdb && \
+    ln -s pydoc3.11 pydoc && \
+    ln -s pygettext3.11 pygettext && \
+    ln -s python3.11 python
 
 # Install pip packages
 RUN pip install --no-cache-dir --upgrade pip && \

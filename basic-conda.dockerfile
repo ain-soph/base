@@ -18,7 +18,7 @@ RUN apt update --fix-missing --no-install-recommends && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 # Update conda packages
-RUN conda install -qy python=3.10.9 && \
+RUN conda install -qy python=3.11 && \
     conda update -qy --all && \
     conda clean -afy
 # Install pip packages
